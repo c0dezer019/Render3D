@@ -32,26 +32,34 @@ public class Render3dApplication {
 				
 				ArrayList<Triangle> tris = new ArrayList<>();
 				
-				tris.add(new Triangle(new Vertex(100, 100, 100),
-						 			  new Vertex(-100, -100, 100),
-						 			  new Vertex(-100, 100, -100),
-						 			  Color.WHITE));
-				
-				tris.add(new Triangle(new Vertex(100, 100, 100),
-			 			  			  new Vertex(-100, -100, 100),
-			 			  			  new Vertex(100, -100, -100),
-			 			  			  Color.RED));
-				
-				tris.add(new Triangle(new Vertex(-100, 100, -100),
-			 			  		  	  new Vertex(100, -100, -100),
-			 			  		  	  new Vertex(100, 100, 100),
-			 			  		  	  Color.GREEN));
-				
-				tris.add(new Triangle(new Vertex(-100, 100, -100),
-			 			  			  new Vertex(100, -100, -100),
-			 			  			  new Vertex(-100, -100, 100),
-			 			  			  Color.BLUE));
-				
+				tris.add(
+					new Triangle(
+						new Vertex(100, 100, 100),
+						new Vertex(-100, -100, 100),
+						new Vertex(-100, 100, -100),
+						Color.WHITE
+					));
+				tris.add(
+					new Triangle(
+						new Vertex(100, 100, 100),
+			 			new Vertex(-100, -100, 100),
+						new Vertex(100, -100, -100),
+						Color.RED
+					));
+				tris.add(
+					new Triangle(
+						new Vertex(-100, 100, -100),
+			 			new Vertex(100, -100, -100),
+			 			new Vertex(100, 100, 100),
+			 			Color.GREEN
+					));
+				tris.add(
+					new Triangle(
+						new Vertex(-100, 100, -100),
+			 			new Vertex(100, -100, -100),
+			 			new Vertex(-100, -100, 100),
+			 			Color.BLUE
+					));
 				g2.translate(getWidth() / 2, getHeight() / 2);
 				g2.setColor(Color.WHITE);
 
