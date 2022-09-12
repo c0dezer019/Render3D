@@ -4,6 +4,7 @@ package com.codeinspace.render3d.lib.shapes;
  * Single point in space.
  * @author Brian Blankenship
  * @see Triangle
+ * @see com.codeinspace.render3d.lib.transform.Matrix3
  */
 public class Vertex {
 	private double x;
