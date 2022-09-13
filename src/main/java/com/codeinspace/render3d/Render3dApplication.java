@@ -6,6 +6,7 @@ import java.awt.geom.Path2D;
 import java.util.ArrayList;
 
 import com.codeinspace.render3d.lib.shapes.*;
+import com.codeinspace.render3d.lib.transform.*;
 
 public class Render3dApplication {
 
@@ -51,22 +52,34 @@ public class Render3dApplication {
 			 			  			  new Vertex(100, -100, -100),
 			 			  			  new Vertex(-100, -100, 100),
 			 			  			  Color.BLUE));
-				
+
+				double heading = Math.toRadians(headingSlider.getValue());
+				Matrix3 transform = new Matrix3(new double[] {
+						Math.cos(heading), 0, -Math.sin(heading),
+						0, 1, 0,
+						Math.sin(heading), 0, Math.cos(heading)
+				});
+
 				g2.translate(getWidth() / 2, getHeight() / 2);
 				g2.setColor(Color.WHITE);
 
 				for(Triangle tri : tris) {
+					Vertex v1 = transform.transform(tri.v1());
+					Vertex v2 = transform.transform(tri.v2());
+					Vertex v3 = transform.transform(tri.v3());
 					Path2D path = new Path2D.Double();
-					path.moveTo(tri.v1().x(), tri.v1().y());
-					path.lineTo(tri.v2().x(), tri.v2().y());
-					path.lineTo(tri.v3().x(), tri.v3().y());
+					path.moveTo(v1.x(), v1.y());
+					path.lineTo(v2.x(), v2.y());
+					path.lineTo(v3.x(), v3.y());
 					path.closePath();
 					g2.draw(path);
 				}
 			}
 		};
 		pane.add(renderPanel, BorderLayout.CENTER);
-		
+		headingSlider.addChangeListener(e -> renderPanel.repaint());
+		pitchSlider.addChangeListener(e -> renderPanel.repaint());
+
 		frame.setSize(400, 400);
 		frame.setVisible(true);
 	}

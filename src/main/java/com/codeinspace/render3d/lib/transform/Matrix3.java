@@ -1,5 +1,6 @@
 package com.codeinspace.render3d.lib.transform;
 
+import com.codeinspace.render3d.lib.shapes.Triangle;
 import com.codeinspace.render3d.lib.shapes.Vertex;
 
 /**
@@ -61,7 +62,6 @@ public class Matrix3 {
 	 * @param j	int
 	 * @param k	int
 	 * @return A double
-	 * @see multiply
 	 */
 	public double values(int i, int j, int k) {
 		return this.cValues[i * j + k];
@@ -78,9 +78,8 @@ public class Matrix3 {
 	 * @param j int
 	 * @param k int
 	 * @return A double at the calculated index of the given {@link Matrix3}.
-	 * @see multiply
 	 */
-	public double values(Matrix3 other, int i, int j, int k) {
+	public static double values(Matrix3 other, int i, int j, int k) {
 		return other.values(i, j, k);
 	}
 	
@@ -88,6 +87,8 @@ public class Matrix3 {
 	 * Overload 4 of 6.
 	 * <br><br>
 	 * Simple getter without the math.
+	 * 
+	 * @author Brian Blankenship
 	 * @param i int
 	 * @return A single value from the matrix.
 	 */
@@ -112,6 +113,7 @@ public class Matrix3 {
 	 * <br><br>
 	 * Setter for a single value in the matrix.
 	 * 
+	 * @author Brian Blankenship
 	 * @param value double
 	 * @param i int
 	 */
@@ -121,6 +123,8 @@ public class Matrix3 {
 	
 	/**
 	 * Transforms the matrix with multiplication.
+	 * 
+	 * @author Brian Blankenship
 	 * @param other {@link Matrix3}
 	 * @return A new {@link Matrix3}
 	 */
@@ -128,10 +132,10 @@ public class Matrix3 {
 		double[] result = new double[9];
 		
 		for (int row = 0; row < 3; row++) {
-			for (int col = 0; row < 3; col++) {
+			for (int col = 0; col < 3; col++) {
 				for (int i = 0; i < 3; i++) {
 					result[row * 3 + col] +=
-							this.values(row, 3, i) * this.values(other, i, 3, col);
+							this.values(row, 3, i) * Matrix3.values(other, i, 3, col);
 				}
 			}
 		}

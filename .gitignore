@@ -26,3 +26,8 @@ hs_err_pid*
 .settings
 .classpath
 .project
+/nbproject/private/
+/build/
+.idea
+.vscode
+nbproject
